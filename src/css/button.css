@@ -1,0 +1,50 @@
+@layer {
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    
+    padding: 6px 16px;
+    
+    background-color: rgb(16, 16, 16);
+    color: rgb(230, 235, 220);
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid rgb(16, 16, 16);
+  
+    box-sizing: border-box;
+  
+    transition: 300ms ease-in-out;
+  }
+  .button:hover {
+    background-color: rgb(42, 42, 42);
+    border-color: rgb(42, 42, 42);
+  }
+  .button svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .button--color-a {
+    background-color: rgb(242, 242, 242);
+    color: rgb(140, 137, 148);
+    border-color: rgb(225,225,225);
+  }
+  .button--color-a:hover {
+    background-color: rgb(249,249,249); 
+    border-color: rgb(197,197,197);
+  }
+  
+  .button--color-b {
+    color: rgb(133,137,135);
+    background-color: transparent;
+    border: none;
+  }
+  .button--color-b:hover {
+    background-color: rgba(242, 242, 242, 0.8);
+  }
+  
+}

@@ -1,3 +1,18 @@
+@font-face {
+  font-family: Tajawal;
+  src: url(../assets/fonts/Tajawal-400.ttf);
+  font-weight: 400;;
+}
+@font-face {
+  font-family: Tajawal;
+  src: url(../assets/fonts/Tajawal-700.ttf);
+  font-weight: 700;;
+}
+
+* {
+  font-family: Tajawal, serif;;
+}
+
 body {
   margin: 0;
 }

@@ -3,8 +3,8 @@ import css from './BasketButton.module.css';
 
 export default function BasketButton() {
   return (
-    <button className={css['button']}>
-      <BasketSVG/>
+    <button className="button button--color-b">
+      <BasketSVG style={{ color: 'rgb(16, 16, 16)' }}/>
     </button>
   );
 }

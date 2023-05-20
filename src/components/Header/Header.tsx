@@ -11,7 +11,7 @@ export default function Header() {
 
       <HeaderNav/>
 
-      <button className={css['menu-button']}>
+      <button className="button button--color-b">
         <MenuBarsSVG/>
       </button>
     </header>
