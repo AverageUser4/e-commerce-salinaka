@@ -1,13 +1,13 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
   height: var(--header-height);
   width: 100%;
-  z-index: 5;
 }
 
-.header--moved {
-  position: fixed;
-  top: 0;
-  
+.header--moved {  
   background-color: rgb(255, 255, 255);
 }
 

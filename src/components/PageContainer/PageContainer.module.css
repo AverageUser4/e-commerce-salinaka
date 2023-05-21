@@ -2,4 +2,7 @@
   padding: 32px 64px;
   max-width: var(--max-width);
   margin: 0 auto;
+  min-height: 100vh;
+
+  box-sizing: border-box;
 }

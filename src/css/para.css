@@ -10,3 +10,7 @@
 .para--small {
   font-size: 14px;
 }
+
+.para--color-a {
+  color: rgb(182, 182, 182);
+}

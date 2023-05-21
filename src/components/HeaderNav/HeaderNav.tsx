@@ -20,16 +20,16 @@ export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boo
       
       <ul className={css['nav-list']}>
         <li>
-          <Link className={linkClass} to="/">Home</Link>
+          <Link onClick={() => setIsNavOpen(false)} className={linkClass} to="/">Home</Link>
         </li>
         <li>
-          <Link className={linkClass} to="/shop">Shop</Link>
+          <Link onClick={() => setIsNavOpen(false)} className={linkClass} to="/shop">Shop</Link>
         </li>
         <li>
-          <Link className={linkClass} to="/featured">Featured</Link>
+          <Link onClick={() => setIsNavOpen(false)} className={linkClass} to="/featured">Featured</Link>
         </li>
         <li>
-          <Link className={linkClass} to="/recommended">Recommended</Link>
+          <Link onClick={() => setIsNavOpen(false)} className={linkClass} to="/recommended">Recommended</Link>
         </li>
       </ul>
 

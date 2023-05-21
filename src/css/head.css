@@ -16,3 +16,9 @@
 .head--small {
   font-size: 24px;
 }
+.head--smaller {
+  font-size: 18px;
+}
+.head--tiny {
+  font-size: 16px;
+}
