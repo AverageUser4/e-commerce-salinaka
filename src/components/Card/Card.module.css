@@ -1,0 +1,23 @@
+.card {
+  background-color: rgb(243,243,243);
+}
+
+.text-part {
+  padding: 32px;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media(min-width: 600px) {
+  .card {
+    display: flex;
+  }
+
+  .image {
+    max-width: 700px;
+  }
+}

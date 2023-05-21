@@ -1,0 +1,208 @@
+import { Product } from "./types";
+
+import product_1 from '../assets/products/product-1.png';
+import product_2 from '../assets/products/product-2.png';
+import product_3 from '../assets/products/product-3.png';
+import product_4 from '../assets/products/product-4.png';
+import product_5 from '../assets/products/product-5.png';
+import product_6 from '../assets/products/product-6.png';
+import product_7 from '../assets/products/product-7.png';
+
+export const productsData: Product[] = [
+  {
+    company: 'Betsin Maalat',
+    name: 'Sugat',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 5 },
+      { value: 'green', quantity: 5 },
+      { value: 'blue', quantity: 4 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 5600,
+    id: '0',
+    src: product_1,
+  },
+  {
+    company: 'Salt',
+    name: 'Kulangot',
+    description: '',
+    colors: [
+      { value: 'green', quantity: 15 },
+      { value: 'blue', quantity: 1 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 6700,
+    id: '1',
+    src: product_2,
+  },
+  {
+    company: 'Sexbomb',
+    name: 'Tiktilaok Manok',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 1 },
+      { value: 'green', quantity: 1 },
+      { value: 'blue', quantity: 2 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 7800,
+    id: '2',
+    src: product_3,
+  },
+  {
+    company: 'Salt maalat',
+    name: 'Very Nice',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 7 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 7900,
+    id: '3',
+    src: product_4,
+  },
+  {
+    company: 'Yezyow',
+    name: 'Quake Overload',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 20 },
+      { value: 'green', quantity: 16 },
+      { value: 'blue', quantity: 33 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 8000,
+    id: '4',
+    src: product_5,
+  },
+  {
+    company: 'Sexbomb',
+    name: 'Kutu',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 8 },
+      { value: 'green', quantity: 3 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 12900,
+    id: '5',
+    src: product_6,
+  },
+  {
+    company: 'Black Kibal',
+    name: 'Tuluk',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 1 },
+      { value: 'green', quantity: 4 },
+      { value: 'blue', quantity: 2 },
+    ],
+    isFeatured: false,
+    isRecommended: true,
+    price: 14200,
+    id: '6',
+    src: product_7,
+  },
+  {
+    company: 'Sexbomb',
+    name: 'Takla Green',
+    description: '',
+    colors: [
+      { value: 'blue', quantity: 3 },
+    ],
+    isFeatured: false,
+    isRecommended: true,
+    price: 15000,
+    id: '7',
+    src: product_1,
+  },
+  {
+    company: 'Betsin Maalat',
+    name: 'Balakubak',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 11 },
+      { value: 'green', quantity: 7 },
+    ],
+    isFeatured: false,
+    isRecommended: true,
+    price: 17000,
+    id: '8',
+    src: product_2,
+  },
+  {
+    company: 'Black Kibal',
+    name: 'Pitaklan',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 9 },
+    ],
+    isFeatured: false,
+    isRecommended: true,
+    price: 17400,
+    id: '9',
+    src: product_3,
+  },
+  {
+    company: 'Black Kibal',
+    name: 'Pitaklan',
+    description: '',
+    colors: [
+      { value: 'green', quantity: 100 },
+    ],
+    isFeatured: false,
+    isRecommended: true,
+    price: 24000,
+    id: '10',
+    src: product_4,
+  },
+  {
+    company: 'Sexbomb',
+    name: 'Burnikk',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 8 },
+      { value: 'green', quantity: 3 },
+      { value: 'blue', quantity: 12 },
+    ],
+    isFeatured: false,
+    isRecommended: false,
+    price: 25000,
+    id: '11',
+    src: product_5,
+  },
+  {
+    company: 'Salt Maalat',
+    name: 'Buldit',
+    description: '',
+    colors: [
+      { value: 'blue', quantity: 22 },
+    ],
+    isFeatured: false,
+    isRecommended: false,
+    price: 25000,
+    id: '12',
+    src: product_6,
+  },
+  {
+    company: 'salt',
+    name: 'Sipon Malapot',
+    description: '',
+    colors: [
+      { value: 'red', quantity: 1 },
+      { value: 'blue', quantity: 2 },
+    ],
+    isFeatured: true,
+    isRecommended: false,
+    price: 25900,
+    id: '13',
+    src: product_7,
+  },
+];

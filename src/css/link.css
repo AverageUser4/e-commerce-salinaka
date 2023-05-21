@@ -1,0 +1,8 @@
+.link {
+  font-weight: bold;
+  color: rgb(16, 16, 16);
+}
+
+.link--big {
+  font-size: 18px;
+}
