@@ -2,11 +2,22 @@ import BasketButton from '../BasketButton/BasketButton';
 import css from './HeaderNav.module.css';
 import { Link } from 'react-router-dom';
 
-export default function HeaderNav() {
-  const linkClass = `button button--color-b ${css['item']}`;
-  
+import { ReactComponent as CloseSVG } from '../../assets/close.svg';
+
+export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boolean, setIsNavOpen: Function }) {
+  const linkClass = `button button--color-b button--medium ${css['item']}`;
+
   return (
-    <nav className={css['nav']}>
+    <nav className={`${css['nav']} ${!isNavOpen && css['nav--hidden']}`}>
+      <div className={css['close-button-container']}>
+        <button 
+          className="button button--color-b"
+          onClick={() => setIsNavOpen(false)}
+        >
+          <CloseSVG/>
+        </button>
+      </div>
+      
       <ul className={css['nav-list']}>
         <li>
           <Link className={linkClass} to="/">Home</Link>
@@ -23,16 +34,18 @@ export default function HeaderNav() {
       </ul>
 
       <div className={css['siblings']}>
-        <form role="search">
-          <input type="search" className={`input input--search ${css['item']}`} placeholder="Search product..."/>
-        </form>
+        <div className={css['siblings']}>
+          <form role="search">
+            <input type="search" className={`input input--search ${css['item']}`} placeholder="Search product..."/>
+          </form>
 
-        <BasketButton/>
-      </div>
+          <BasketButton/>
+        </div>
 
-      <div className={css['siblings']}>
-        <Link to="/signup" className="button">Sign up</Link>
-        <Link to="/signin" className="button button--color-a">Sign in</Link>
+        <div className={css['siblings']}>
+          <Link to="/signup" className="button">Sign up</Link>
+          <Link to="/signin" className="button button--color-a">Sign in</Link>
+        </div>
       </div>
     </nav>
   );

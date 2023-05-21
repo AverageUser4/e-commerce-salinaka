@@ -6,6 +6,7 @@
 }
 
 .input--search {
+  width: 170px;
   padding-left: 44px;
 
   font-weight: bold;

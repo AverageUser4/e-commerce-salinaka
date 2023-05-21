@@ -46,5 +46,9 @@
   .button--color-b:hover {
     background-color: rgba(242, 242, 242, 0.8);
   }
+
+  .button--medium {
+    font-size: 14px;
+  }
   
 }
