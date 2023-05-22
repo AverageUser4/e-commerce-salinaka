@@ -2,6 +2,7 @@ import css from './DetailedProductCard.module.css';
 import { Product } from "../../app/types";
 import { parsePrice } from "../../app/utils";
 import { Link } from 'react-router-dom';
+import Text from '../Text/Text';
 
 export default function DetailedProductCard({ product } : { product: Product }) {
   return (
@@ -13,10 +14,10 @@ export default function DetailedProductCard({ product } : { product: Product }) 
 
         <div className={css['bottom']}>
           <div className={css['text-container']}>
-            <h4 className="head head--tiny">{product.name}</h4>
-            <p className="para para--no-margin para--color-a">{product.company}</p>
+            <Text element="h3" variant="h4" style={{ marginBottom: 6 }}>{product.name}</Text>
+            <Text element="p" variant="h5" color="p-c" style={{ fontStyle: 'italic' }}>{product.company}</Text>
           </div>
-          <p className="head head--smaller">{parsePrice(product.price)}</p>
+          <Text element="p" variant="h3">{parsePrice(product.price)}</Text>
         </div>
       </Link>
 

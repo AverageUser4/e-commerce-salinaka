@@ -1,5 +1,5 @@
 .container {
-  padding: 32px 64px;
+  padding: 32px clamp(16px, 5vw, 64px);
   max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100vh;

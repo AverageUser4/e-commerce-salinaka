@@ -1,6 +1,7 @@
 import css from './ProductsList.module.css';
 import { Product } from '../../app/types';
 import { Link } from 'react-router-dom';
+import Text from '../Text/Text';
 
 export default function ProductsList({ products } : { products: Product[] }) {
   return (
@@ -12,8 +13,8 @@ export default function ProductsList({ products } : { products: Product[] }) {
               <img className={css['image']} src={product.src} alt=""/>
             </div>
             <div className={css['bottom']}>
-              <h3 className="head head--small">{product.name}</h3>
-              <p className="para para--no-margin">{product.company}</p>
+              <Text element="h3" variant="h3">{product.name}</Text>
+              <Text style={{ fontStyle: 'italic' }} color="p-b" element="p" variant="p">{product.company}</Text>
             </div>
           </Link>
         </li>

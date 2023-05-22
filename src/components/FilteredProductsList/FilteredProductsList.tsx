@@ -3,6 +3,7 @@ import ProductsList from "../ProductsList/ProductsList";
 import { Link } from 'react-router-dom';
 import { useAppSelector, useProductsData } from '../../app/hooks';
 import { selectProducts } from '../../features/products/productsSlice';
+import Text from '../Text/Text';
 
 export default function FilteredProductsList({ href, heading, hasHeading = true, filterCallback } : { hasHeading: boolean, heading: string, href: string, filterCallback: (x: any) => any }) {
   useProductsData();
@@ -14,7 +15,7 @@ export default function FilteredProductsList({ href, heading, hasHeading = true,
       {
         hasHeading &&
           <div className={css['top']}>
-            <h2 className="head head--medium">{heading}</h2>
+            <Text element="h2" variant="h2">{heading}</Text>
             <Link to={href} className="link link--big">See All</Link>
           </div>
       }
