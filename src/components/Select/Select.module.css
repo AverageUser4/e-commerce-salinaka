@@ -1,0 +1,48 @@
+.container {
+  position: relative;
+}
+.container::before {
+  content: '';
+
+  position: absolute;
+  right: 32px;
+  top: 15%;
+
+  display: block;
+
+  width: 1px;
+  height: 70%;
+  background-color: rgb(225,225,225);
+}
+.container::after {
+  content: '';
+
+  position: absolute;
+  right: 12px;
+  top: calc(50% - 2px);
+
+  display: block;
+
+  width: 0;
+  height: 0;
+  border: 5px solid red;
+  border-color: rgb(225,225,225) transparent transparent transparent;
+}
+.container:focus-within.container::after {
+  transform: scaleY(-1) translateY(6px);
+}
+
+.select {
+  padding: 5px 10px;
+  width: 100%;
+  
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(225,225,225);
+  color: rgb(74, 74, 74);
+  font-weight: bold;
+  
+  appearance: none;
+}
+.select:focus {
+  background-color: rgb(249, 249, 249);
+}

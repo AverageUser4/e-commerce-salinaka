@@ -20,3 +20,7 @@ body {
 button:hover {
   cursor: pointer;
 }
+
+option {
+  font-family: sans-serif;
+}

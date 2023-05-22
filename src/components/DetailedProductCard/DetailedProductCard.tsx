@@ -3,6 +3,7 @@ import { Product } from "../../app/types";
 import { parsePrice } from "../../app/utils";
 import { Link } from 'react-router-dom';
 import Text from '../Text/Text';
+import Button from '../Button/Button';
 
 export default function DetailedProductCard({ product } : { product: Product }) {
   return (
@@ -22,7 +23,9 @@ export default function DetailedProductCard({ product } : { product: Product }) 
       </Link>
 
       <div className={css['button-container']}>
-        <button className={`button ${css['button']}`}>Add to basket</button>
+        <Button className={css['button']}>
+          Add to basket
+        </Button>
       </div>
     </article>
   );

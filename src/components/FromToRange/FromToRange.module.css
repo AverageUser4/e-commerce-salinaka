@@ -1,0 +1,87 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  margin: 12px 0;
+}
+
+.input {
+  padding: 0;
+  width: 100px;
+  
+  border: 1px solid transparent;
+  border-radius: 0;
+  text-align: center;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: bold;
+  
+  appearance: none;
+  -moz-appearance: textfield;
+}
+.input:focus {
+  outline: none;
+  border-color: rgb(197, 197, 197);
+}
+
+.bottom {
+
+}
+
+.range-container {
+  position: relative;
+  
+  width: 100%;
+  height: 18px;
+  
+  border-radius: 30px;
+  background-color: rgb(208, 208, 208);
+}
+
+.active-indicator {
+  position: absolute;
+  top: 0;
+  
+  background-color: rgb(255, 165, 0);
+  height: 100%;
+}
+
+.dot {
+  position: absolute;
+  top: -4px;
+  
+  width: 26px;
+  height: 26px;
+
+  background-color: rgb(26, 26, 26);
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px 1px;
+
+  transform: translateX(-50%);
+}
+
+.step {
+  position: absolute;
+  top: 40px;
+  
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(26, 26, 26);
+
+  user-select: none;
+  transform: translateX(-50%);
+}
+.step::before {
+  content: '';
+
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  
+  display: block;
+  width: 1px;
+  height: 6px;
+
+  background-color: rgb(200, 200, 200);
+}

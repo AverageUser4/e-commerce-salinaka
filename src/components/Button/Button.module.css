@@ -6,7 +6,7 @@
     justify-content: center;
     gap: 6px;
     
-    padding: 6px 16px;
+    padding: 0.6em 1em;
     
     background-color: rgb(16, 16, 16);
     color: rgb(230, 235, 220);
@@ -23,39 +23,24 @@
     background-color: rgb(42, 42, 42);
     border-color: rgb(42, 42, 42);
   }
-  .button svg {
-    width: 24px;
-    height: 24px;
-  }
   
-  .button--color-a {
+  .color-a {
     background-color: rgb(242, 242, 242);
     color: rgb(140, 137, 148);
     border-color: rgb(225,225,225);
   }
-  .button--color-a:hover {
+  .color-a:hover {
     background-color: rgb(249,249,249); 
     border-color: rgb(197,197,197);
   }
   
-  .button--color-b {
+  .color-b {
     color: rgb(133,137,135);
     background-color: transparent;
     border: none;
   }
-  .button--color-b:hover {
+  .color-b:hover {
     background-color: rgba(242, 242, 242, 0.8);
-  }
-
-  .button--medium {
-    font-size: 14px;
-  }
-  
-  .button--type-a {
-    display: inline-flex;
-    padding: 12px 16px;
-
-    font-size: 16px;
   }
 
 }
