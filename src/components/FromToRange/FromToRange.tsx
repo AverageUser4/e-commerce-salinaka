@@ -1,26 +1,46 @@
 import css from './FromToRange.module.css';
 import Text from '../Text/Text';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { clamp } from '../../app/utils';
 
-export default function FromToRange() {
-  const min = 100;
-  const max = 700;
-
+export default function FromToRange({ min, max } : { min: number, max: number }) {
   const [valueA, setValueA] = useState(333);
   const [valueB, setValueB] = useState(125);
   const [currentDot, setCurrentDot] = useState('');
   const rangeRef = useRef<HTMLDivElement>(null);
+  const dotARef = useRef<HTMLDivElement>(null);
+  const dotBRef = useRef<HTMLDivElement>(null);
 
+  const arrowMoveAmount = Math.round((max - min) / 10);
   const big = Math.max(valueA, valueB);
   const small = Math.min(valueA, valueB);
 
-  const step = (max - min) / 6;
+  const step = Math.round((max - min) / 6);
   const stepsArray: number[] = [];
 
   for(let i = 1; i <= 5; i++) {
     stepsArray.push(step * i + min);
   }
+
+  const doSetValue = useCallback((which: 'a' | 'b', value: number, isAddToPrev = false) => {
+    if(which === 'a') {
+      if(isAddToPrev) {
+        setValueA(prev => clamp(min, prev + value, max));
+      } else {
+        setValueA(clamp(min, value, max));
+      }
+    } else {
+      if(isAddToPrev) {
+        setValueB(prev => clamp(min, prev + value, max));
+      } else {
+        setValueB(clamp(min, value, max));
+      }
+    }
+  }, [min, max]);
+
+  const percentToValue = useCallback((percent: number) => {
+    return Math.round((max - min) / 100 * percent + min);
+  }, [min, max]);
 
   function getPercent(value: number, parse = true): any {
     let percent = clamp(0, (value - min) / (max - min) * 100, 100);
@@ -31,10 +51,6 @@ export default function FromToRange() {
     return percent;
   }
 
-  function percentToValue(percent: number): number {
-    return Math.round((max - min) / 100 * percent + min);
-  }
-
   function onPointerDownRange(event: any) {
     const { offsetX } = event.nativeEvent;
     const rangeWidth = event.target.getBoundingClientRect().width;
@@ -42,10 +58,10 @@ export default function FromToRange() {
     const newValue = percentToValue(pointerPercent);
 
     if(Math.abs(newValue - valueA) < Math.abs(newValue - valueB)) {
-      setValueA(newValue);
+      doSetValue('a', newValue);
       setCurrentDot('a');
     } else {
-      setValueB(newValue);
+      doSetValue('b', newValue);
       setCurrentDot('b');
     }
   }
@@ -63,12 +79,12 @@ export default function FromToRange() {
       const { x: rangeX, width: rangeWidth } = rangeRef.current.getBoundingClientRect();
       const offsetX = event.clientX - rangeX;
       const pointerPercent = offsetX / rangeWidth * 100;
-      const newValue = clamp(min, percentToValue(pointerPercent), max);
+      const newValue = percentToValue(pointerPercent);
 
       if(currentDot === 'a') {
-        setValueA(newValue);
+        doSetValue('a', newValue);
       } else {
-        setValueB(newValue);
+        doSetValue('b', newValue);
       }
     }
 
@@ -81,14 +97,49 @@ export default function FromToRange() {
       window.removeEventListener('pointerup', onPointerUp);
       window.removeEventListener('pointermove', onPointerMove);
     };
-  }, [currentDot]);
+  }, [currentDot, doSetValue, percentToValue]);
+
+  useEffect(() => {
+    function onKeyDown(event: any) {
+      let amount = 0;
+      
+      switch(event.key) {
+        case 'ArrowRight':
+          amount = 1;
+          break;
+        case 'ArrowLeft':
+          amount = -1;
+          break;
+        case 'ArrowUp':
+          amount = arrowMoveAmount;
+          break;
+        case 'ArrowDown':
+          amount = -arrowMoveAmount;
+          break;
+      }
+      
+      if(amount) {
+        if(document.activeElement === dotARef.current) {
+          doSetValue('a', amount, true);
+        } else if(document.activeElement === dotBRef.current) {
+          doSetValue('b', amount, true);
+        }
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [arrowMoveAmount, doSetValue]);
 
   return (
     <div>
       <div className={css['top']}>
-        <input readOnly value={small} className={css['input']} type="number"/>
-        <Text variant="h2">—</Text>
-        <input readOnly value={big} className={css['input']} type="number"/>
+        <input id="ftr-min" aria-label="Minimum price." readOnly value={small} className={css['input']} type="number"/>
+        <Text variant="h3" style={{ userSelect: 'none' }}>—</Text>
+        <input id="ftr-max" aria-label="Maximum price." readOnly value={big} className={css['input']} type="number"/>
       </div>
 
       <div>
@@ -109,8 +160,8 @@ export default function FromToRange() {
               {step}
             </div>
           ))}
-          <div className={css['dot']} style={{ left: getPercent(valueA) }}/>
-          <div className={css['dot']} style={{ left: getPercent(valueB) }}/>
+          <div aria-controls={valueA <= valueB ? 'ftr-min' : 'ftr-max'} ref={dotARef} tabIndex={0} className={css['dot']} style={{ left: getPercent(valueA) }}/>
+          <div aria-controls={valueB >= valueA ? 'ftr-max' : 'ftr-min'} ref={dotBRef} tabIndex={0} className={css['dot']} style={{ left: getPercent(valueB) }}/>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { ReactNode, createElement } from "react"
 import css from './Button.module.css';
 import { Link } from "react-router-dom";
 
-export default function Button({ children, href, style, color, onClick, className = '' } : { children: ReactNode, href?: string, style?: Object, color?: string, onClick?: Function, className?: string }) {
+export default function Button({ children, href, style, color, onClick, className = '', type } : { children: ReactNode, href?: string, style?: Object, color?: string, onClick?: Function, className?: string, type?: 'submit' | 'button' }) {
   className += ` ${css['button']} ${css[`color-${color}`]}`;
   const clickCallback = (event: any) => onClick && onClick(event);
   
@@ -17,7 +17,7 @@ export default function Button({ children, href, style, color, onClick, classNam
   return (
     createElement(
       href ? 'a' : 'button',
-      { href, style, className, onClick: clickCallback },
+      { href, style, className, onClick: clickCallback, type },
       children
     )
   );

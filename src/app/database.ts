@@ -25,7 +25,7 @@ export const productsData: Product[] = [
     src: product_1,
   },
   {
-    company: 'Salt',
+    company: 'Salt Maalat',
     name: 'Kulangot',
     description: '',
     colors: [
@@ -54,7 +54,7 @@ export const productsData: Product[] = [
     src: product_3,
   },
   {
-    company: 'Salt maalat',
+    company: 'Salt Maalat',
     name: 'Very Nice',
     description: '',
     colors: [
@@ -192,7 +192,7 @@ export const productsData: Product[] = [
     src: product_6,
   },
   {
-    company: 'salt',
+    company: 'Salt Maalat',
     name: 'Sipon Malapot',
     description: '',
     colors: [
