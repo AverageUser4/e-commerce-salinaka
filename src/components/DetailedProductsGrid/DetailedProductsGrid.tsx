@@ -1,19 +1,24 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useProductsData } from '../../app/hooks';
+import { useAppSelector, useProductsData } from '../../app/hooks';
 import css from './DetailedProductsGrid.module.css';
-import { selectProducts } from '../../features/products/productsSlice';
+import { selectFilteredProducts, selectProducts } from '../../features/products/productsSlice';
 import { Product } from '../../app/types';
 import DetailedProductCard from '../DetailedProductCard/DetailedProductCard';
 import Button from '../Button/Button';
 import FiltersModal from "../FiltersModal/FiltersModal";
+import Text from '../Text/Text';
 
 import { ReactComponent as FilterSVG } from '../../assets/filter.svg';
+import { selectFilters } from '../../features/filters/filtersSlice';
+import { RootState } from '../../app/store';
+import AppliedFilters from '../AppliedFilters/AppliedFilters';
 
 export default function DetailedProductsGrid() {
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
   useProductsData();
-  const products = useSelector(selectProducts);
+  const filters = useAppSelector(selectFilters);
+  const products = useAppSelector(selectProducts);
+  const filteredProducts = useAppSelector((state: RootState) => selectFilteredProducts(state, filters));
   const data: { min: number, max: number, brands: string[] } = {
     min: Number.MAX_SAFE_INTEGER,
     max: 0,
@@ -31,26 +36,33 @@ export default function DetailedProductsGrid() {
   return (
     <div>
       <Button 
-        onClick={() => setIsFiltersOpen(prev => !prev)}
+        onClick={() => setIsFiltersModalOpen(prev => !prev)}
         style={{ marginBottom: 16, width: '100%', fontSize: 14 }}
         color="a"
       >
         Filters <FilterSVG style={{ width: 14 }}/>
       </Button>
 
-      <ul className={css['container']}>
-        {products.map((product: Product) => (
-          <li key={product.id}>
-            <DetailedProductCard product={product}/>
-          </li>
-        ))}
-      </ul>
+      <AppliedFilters/>
+
+      {
+        filteredProducts.length ?
+          <ul className={css['container']}>
+            {filteredProducts.map((product: Product) => (
+              <li key={product.id}>
+                <DetailedProductCard product={product}/>
+              </li>
+            ))}
+          </ul>
+        :
+          <Text variant="h3" element="h3" style={{ textAlign: 'center', marginTop: 32 }}>No products found.</Text>
+      }
 
       <FiltersModal 
-        isOpen={isFiltersOpen}
-        setIsOpen={setIsFiltersOpen}
-        min={data.min / 100}
-        max={data.max / 100}
+        isOpen={isFiltersModalOpen}
+        setIsOpen={setIsFiltersModalOpen}
+        min={data.min}
+        max={data.max}
         brands={data.brands}
       />
     </div>

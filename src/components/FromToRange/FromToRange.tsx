@@ -3,17 +3,15 @@ import Text from '../Text/Text';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { clamp } from '../../app/utils';
 
-export default function FromToRange({ min, max } : { min: number, max: number }) {
-  const [valueA, setValueA] = useState(333);
-  const [valueB, setValueB] = useState(125);
-  const [currentDot, setCurrentDot] = useState('');
+export default function FromToRange({ min, max, values, setValues } : { min: number, max: number, values: number[], setValues: Function }) {
+  const [currentDot, setCurrentDot] = useState<0 | 1 | null>(null);
   const rangeRef = useRef<HTMLDivElement>(null);
   const dotARef = useRef<HTMLDivElement>(null);
   const dotBRef = useRef<HTMLDivElement>(null);
 
   const arrowMoveAmount = Math.round((max - min) / 10);
-  const big = Math.max(valueA, valueB);
-  const small = Math.min(valueA, valueB);
+  const big = Math.max(...values);
+  const small = Math.min(...values);
 
   const step = Math.round((max - min) / 6);
   const stepsArray: number[] = [];
@@ -22,21 +20,16 @@ export default function FromToRange({ min, max } : { min: number, max: number })
     stepsArray.push(step * i + min);
   }
 
-  const doSetValue = useCallback((which: 'a' | 'b', value: number, isAddToPrev = false) => {
-    if(which === 'a') {
-      if(isAddToPrev) {
-        setValueA(prev => clamp(min, prev + value, max));
-      } else {
-        setValueA(clamp(min, value, max));
-      }
-    } else {
-      if(isAddToPrev) {
-        setValueB(prev => clamp(min, prev + value, max));
-      } else {
-        setValueB(clamp(min, value, max));
-      }
-    }
-  }, [min, max]);
+  const doSetValue = useCallback((which: 0 | 1, value: number, isAddToPrev = false) => {
+    console.log('hi')
+    setValues((prev: number[]) => {
+      const copy = [...prev];
+      let usedValue = isAddToPrev ? (copy[which] + value) : value;
+      usedValue = clamp(min, usedValue, max);
+      copy[which] = usedValue;
+      return copy;
+    });
+  }, [min, max, setValues]);
 
   const percentToValue = useCallback((percent: number) => {
     return Math.round((max - min) / 100 * percent + min);
@@ -56,19 +49,19 @@ export default function FromToRange({ min, max } : { min: number, max: number })
     const rangeWidth = event.target.getBoundingClientRect().width;
     const pointerPercent = offsetX / rangeWidth * 100;
     const newValue = percentToValue(pointerPercent);
+    let which: 0 | 1 = 0;
 
-    if(Math.abs(newValue - valueA) < Math.abs(newValue - valueB)) {
-      doSetValue('a', newValue);
-      setCurrentDot('a');
-    } else {
-      doSetValue('b', newValue);
-      setCurrentDot('b');
+    if(Math.abs(newValue - values[0]) > Math.abs(newValue - values[1])) {
+      which = 1;
     }
+
+    doSetValue(which, newValue);
+    setCurrentDot(which);
   }
 
   useEffect(() => {
     function onPointerUp() {
-      setCurrentDot('');
+      setCurrentDot(null);
     }
 
     function onPointerMove(event: any) {
@@ -81,14 +74,12 @@ export default function FromToRange({ min, max } : { min: number, max: number })
       const pointerPercent = offsetX / rangeWidth * 100;
       const newValue = percentToValue(pointerPercent);
 
-      if(currentDot === 'a') {
-        doSetValue('a', newValue);
-      } else {
-        doSetValue('b', newValue);
+      if(currentDot !== null) {
+        doSetValue(currentDot, newValue);
       }
     }
 
-    if(currentDot) {
+    if(currentDot !== null) {
       window.addEventListener('pointerup', onPointerUp);
       window.addEventListener('pointermove', onPointerMove);
     }
@@ -120,9 +111,9 @@ export default function FromToRange({ min, max } : { min: number, max: number })
       
       if(amount) {
         if(document.activeElement === dotARef.current) {
-          doSetValue('a', amount, true);
+          doSetValue(0, amount, true);
         } else if(document.activeElement === dotBRef.current) {
-          doSetValue('b', amount, true);
+          doSetValue(1, amount, true);
         }
       }
     }
@@ -160,8 +151,8 @@ export default function FromToRange({ min, max } : { min: number, max: number })
               {step}
             </div>
           ))}
-          <div aria-controls={valueA <= valueB ? 'ftr-min' : 'ftr-max'} ref={dotARef} tabIndex={0} className={css['dot']} style={{ left: getPercent(valueA) }}/>
-          <div aria-controls={valueB >= valueA ? 'ftr-max' : 'ftr-min'} ref={dotBRef} tabIndex={0} className={css['dot']} style={{ left: getPercent(valueB) }}/>
+          <div aria-controls={values[0] <= values[1] ? 'ftr-min' : 'ftr-max'} ref={dotARef} tabIndex={0} className={css['dot']} style={{ left: getPercent(values[0]) }}/>
+          <div aria-controls={values[1] >= values[0] ? 'ftr-max' : 'ftr-min'} ref={dotBRef} tabIndex={0} className={css['dot']} style={{ left: getPercent(values[1]) }}/>
         </div>
       </div>
     </div>

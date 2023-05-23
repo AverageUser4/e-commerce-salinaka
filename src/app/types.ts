@@ -16,3 +16,9 @@ export interface Product {
 }
 
 export type TextElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p';
+
+export interface Filters {
+  brand: string,
+  sort: 'nameAsc' | 'nameDesc' | 'priceAsc' | 'priceDesc' | '',
+  price: number[],
+}

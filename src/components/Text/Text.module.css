@@ -5,6 +5,7 @@
 .h1, .h2, .h3, .h4, .h5, .h6 {
   line-height: 1.15;
   color: rgb(26, 26, 26);
+  font-weight: bold;
 }
 .h1 {
   font-size: clamp(32px, 5vw, 48px);

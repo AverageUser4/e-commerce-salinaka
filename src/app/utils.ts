@@ -1,5 +1,10 @@
-export function parsePrice(price: number): string {
-  return '$' + (price / 100).toFixed(2);
+export function parsePrice(price: number, cutDecimal?: boolean): string {
+  let parsed: number | string = (price / 100);
+  if(!cutDecimal) {
+    parsed = parsed.toFixed(2);
+  }
+  
+  return '$' + parsed;
 }
 
 export function clamp(min: number, actual: number, max: number): number {
