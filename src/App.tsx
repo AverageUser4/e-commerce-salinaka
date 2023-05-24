@@ -6,6 +6,8 @@ import Footer from "./components/Footer/Footer";
 import Featured from "./pages/Featured";
 import Recommended from "./pages/Recommended";
 import Shop from "./pages/Shop";
+import Product from "./pages/Product";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -28,6 +30,14 @@ function App() {
 
           <Route path="/shop">
             <Shop/>
+          </Route>
+
+          <Route path="/product/:id">
+            <Product/>
+          </Route>
+
+          <Route path="/signup">
+            <SignUp/>
           </Route>
 
           <Redirect to="/"/>

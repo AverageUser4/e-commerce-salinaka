@@ -8,7 +8,7 @@ export default function ProductsList({ products } : { products: Product[] }) {
     <ul className={css['list']}>
       {products.map(product => (
         <li key={product.id}>
-          <Link to={`/products/${product.id}`} className={css['item']}>
+          <Link to={`/product/${product.id}`} className={css['item']}>
             <div className={css['top']}>
               <img className={css['image']} src={product.src} alt=""/>
             </div>

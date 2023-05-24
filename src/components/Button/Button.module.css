@@ -53,4 +53,14 @@
     border-color: rgb(225, 225, 225);
   }
 
+  .color-d {
+    color: rgb(74, 74, 74);
+    background-color: transparent;
+    border-color: rgb(225,225,225);
+  }
+  .color-d:hover {
+    background-color: rgb(225,225,225);
+    border-color: rgb(225,225,225);
+  }
+
 }

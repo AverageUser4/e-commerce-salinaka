@@ -69,9 +69,9 @@ export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boo
           <BasketButton/>
         </div>
 
-        <div className={css['siblings']}>
-          <Button href="/signup">Sign up</Button>
-          <Button href="/signin" color="a">Sign in</Button>
+        <div className={css['siblings']}>            
+          <Button onClick={() => setIsNavOpen(false)} href="/signup">Sign up</Button>
+          <Button onClick={() => setIsNavOpen(false)} href="/signin" color="a">Sign in</Button>
         </div>
       </div>
     </nav>

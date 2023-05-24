@@ -1,0 +1,34 @@
+.container {
+  border: 1px solid rgb(197, 197, 197);
+  background-color: rgb(249, 249, 249);
+
+  flex-grow: 1;
+}
+
+.top {
+  padding: 32px;
+  border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.input-container {
+  display: flex; 
+  flex-direction: column;
+  gap: 8px;
+
+  margin: 16px 0;
+}
+
+.label {
+  text-align: center;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 32px;
+  flex-wrap: wrap;
+  
+  padding: 16px 32px;
+  background-color: rgb(242,242,242);
+}

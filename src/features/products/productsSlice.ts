@@ -25,13 +25,14 @@ const productsSlice = createSlice({
 
 export const { readProductsData } = productsSlice.actions;
 
-export const {
-  selectAll,
-  selectById: selectProductsById,
-  selectIds: selectProductIds,
+const { 
+  selectAll, selectById, selectIds 
 } = productsAdapter.getSelectors((state: RootState) => state.products);
 
 export const selectAllProducts = (state: RootState) => selectAll(state) as Product[];
+export const selectProductById = (state: RootState, id: string) => selectById(state, id) as Product;
+export const selectProductIds = (state: RootState) => selectIds(state) as string[];
+
 
 export const selectFilteredProducts = createSelector(
   [

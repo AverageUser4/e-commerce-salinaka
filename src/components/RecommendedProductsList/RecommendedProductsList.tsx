@@ -5,7 +5,7 @@ export default function RecommendedProductsList({ hasHeading = true }) {
   return (
     <FilteredProductsList
       hasHeading={hasHeading}
-      href="/Recommended"
+      href="/recommended"
       heading="Recommended Products"
       filterCallback={(product: Product) => product.isRecommended}
     />
