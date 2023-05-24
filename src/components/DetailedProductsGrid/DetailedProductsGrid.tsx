@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppSelector, useProductsData } from '../../app/hooks';
 import css from './DetailedProductsGrid.module.css';
-import { selectFilteredProducts, selectProducts } from '../../features/products/productsSlice';
+import { selectFilteredProducts, selectAllProducts } from '../../features/products/productsSlice';
 import { Product } from '../../app/types';
 import DetailedProductCard from '../DetailedProductCard/DetailedProductCard';
 import Button from '../Button/Button';
@@ -17,7 +17,7 @@ export default function DetailedProductsGrid() {
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
   useProductsData();
   const filters = useAppSelector(selectFilters);
-  const products = useAppSelector(selectProducts);
+  const products = useAppSelector(selectAllProducts);
   const filteredProducts = useAppSelector((state: RootState) => selectFilteredProducts(state, filters));
   const data: { min: number, max: number, brands: string[] } = {
     min: Number.MAX_SAFE_INTEGER,

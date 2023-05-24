@@ -2,12 +2,12 @@ import css from './FilteredProductsList.module.css';
 import ProductsList from "../ProductsList/ProductsList";
 import { Link } from 'react-router-dom';
 import { useAppSelector, useProductsData } from '../../app/hooks';
-import { selectProducts } from '../../features/products/productsSlice';
+import { selectAllProducts } from '../../features/products/productsSlice';
 import Text from '../Text/Text';
 
 export default function FilteredProductsList({ href, heading, hasHeading = true, filterCallback } : { hasHeading: boolean, heading: string, href: string, filterCallback: (x: any) => any }) {
   useProductsData();
-  const products = useAppSelector(selectProducts);
+  const products = useAppSelector(selectAllProducts);
   const filteredProducts = products.filter(filterCallback);
 
   return (

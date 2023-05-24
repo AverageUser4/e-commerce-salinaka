@@ -11,7 +11,7 @@ export function useProductsData() {
   const products = useAppSelector((state: RootState) => state.products);
   const dispatch = useAppDispatch();
 
-  if(!products.length) {
+  if(!products.ids.length) {
     dispatch(readProductsData(productsData));
   }
 }

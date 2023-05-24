@@ -1,26 +1,44 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Filters, Product } from "../../app/types";
 
+const productsAdapter = createEntityAdapter();
+const initialState = productsAdapter.getInitialState();
+
 const productsSlice = createSlice({
   name: 'products',
-  initialState: [],
+  initialState,
   reducers: {
     readProductsData(state, action) {
-      return action.payload;
+      const entities: { [key: string]: Product } = {};
+      const ids: string[] = [];
+
+      action.payload.forEach((product: Product) => {
+        ids.push(product.id);
+        entities[product.id] = product;
+      });
+
+      return { entities, ids };
     }
   },
 });
 
 export const { readProductsData } = productsSlice.actions;
 
-export const selectProducts = (state: RootState) => state.products;
+export const {
+  selectAll,
+  selectById: selectProductsById,
+  selectIds: selectProductIds,
+} = productsAdapter.getSelectors((state: RootState) => state.products);
+
+export const selectAllProducts = (state: RootState) => selectAll(state) as Product[];
+
 export const selectFilteredProducts = createSelector(
   [
-    selectProducts,
+    selectAllProducts,
     (state: RootState, filters: Filters) => filters
   ],
-  (products: Product[], filters: Filters) => {
+  (products: any[], filters: Filters) => {
     let usedProducts = [...products];
 
     if(filters.brand) {
