@@ -17,12 +17,18 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
         </div>
 
         <div className={css['top__buttons']}>
-          <Button color="d" style={{ borderRight: 'none' }}>Close</Button>
+          <Button color="d" style={{ borderRight: 'none' }} onClick={() => setIsOpen(false)}>Close</Button>
           <Button color="d">Clear Basket</Button>
         </div>
       </div>
 
       <ul className={css['products-list']}>
+        <li>
+          <BasketItem/>
+        </li>
+        <li>
+          <BasketItem/>
+        </li>
         <li>
           <BasketItem/>
         </li>

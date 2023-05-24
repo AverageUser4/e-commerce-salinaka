@@ -72,7 +72,7 @@ export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boo
               <input type="search" className={`input input--search ${css['item']}`} placeholder="Search product..."/>
             </form>
 
-            <Button color="b" onClick={() => setIsBasketOpen(prev => !prev)}>
+            <Button color="b" onClick={() => { setIsBasketOpen(prev => !prev); setIsNavOpen(false); }}>
               <BasketSVG style={{ color: 'rgb(16, 16, 16)', width: 24, height: 24 }}/>
             </Button>
           </div>

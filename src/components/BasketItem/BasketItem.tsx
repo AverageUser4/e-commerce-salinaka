@@ -5,6 +5,7 @@ import { selectProductById } from '../../features/products/productsSlice';
 import Button from '../Button/Button';
 import Text from '../Text/Text';
 import css from './BasketItem.module.css';
+import { parsePrice } from '../../app/utils';
 
 export default function BasketItem() {
   useProductsData();
@@ -38,9 +39,13 @@ export default function BasketItem() {
 
         <div className={css['item-4']}>
           <Text variant="h6" element="h5" color="p-a" style={{ marginBottom: 4 }}>Color</Text>
-          <Text variant="h6" element="p">red</Text>
+          <div className={css['color']} style={{ backgroundColor: product.colors[0].value }}/>
         </div>
       </div>
+
+      <Text variant="h4" element="p" style={{ marginLeft: 40 }}>{parsePrice(product.price)}</Text>
+
+      <Button color="d" style={{ margin: '0 16px 0 auto' }}>X</Button>
     </article>
   );
 }
