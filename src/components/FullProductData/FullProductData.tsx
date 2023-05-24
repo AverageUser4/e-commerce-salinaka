@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import css from './FullProductData.module.css';
 import { useAppSelector, useProductsData } from '../../app/hooks';
 import { selectProductById } from '../../features/products/productsSlice';
@@ -7,16 +6,19 @@ import Text from '../Text/Text';
 import Separator from '../Separator/Separator';
 import Select from '../Select/Select';
 import ColorInputs from '../ColorInputs/ColorInputs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { parsePrice } from '../../app/utils';
 import Button from '../Button/Button';
 
 
-export default function FullProductData() {
+export default function FullProductData({ id } : { id: string }) {
   useProductsData();
-  const { id } = useParams() as { id: string };
   const product = useAppSelector((state: RootState) => selectProductById(state, id));
   const [currentColor, setCurrentColor] = useState(product.colors[0].value);
+
+  useEffect(() => {
+    setCurrentColor(product.colors[0].value)
+  }, [id, product.colors]);
 
   return (
     <article className={css['container']}>

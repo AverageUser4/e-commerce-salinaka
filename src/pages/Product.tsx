@@ -4,8 +4,11 @@ import PageContainer from "../components/PageContainer/PageContainer";
 import RecommendedProductsList from "../components/RecommendedProductsList/RecommendedProductsList";
 
 import { ReactComponent as ArrowSVG } from '../assets/arrow.svg';
+import { useParams } from "react-router-dom";
 
 export default function Product() {
+  const { id } = useParams() as { id: string };
+
   return (
     <PageContainer>
       <Button 
@@ -20,8 +23,8 @@ export default function Product() {
         <ArrowSVG style={{ transform: 'scaleX(-1)' }}/>
         Back to shop
       </Button>
-      <FullProductData/>
-      <RecommendedProductsList/>
+      <FullProductData id={id}/>
+      <RecommendedProductsList ignoreId={id}/>
     </PageContainer>
   );
 }

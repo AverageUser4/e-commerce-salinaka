@@ -1,10 +1,10 @@
 import PageContainer from "../components/PageContainer/PageContainer";
 import AuthForm from "../components/AuthForm/AuthForm";
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <PageContainer isCenter={true}>
-      <AuthForm type="up"/>
+      <AuthForm type="in"/>
     </PageContainer>
   );
 }

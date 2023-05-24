@@ -1,0 +1,58 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  
+  display: flex;
+  flex-direction: column;
+
+  width: 600px;
+  height: 100%;
+  max-width: 100%;
+  padding: 24px;
+
+  background-color: rgb(255, 255, 255);
+  box-sizing: rgba(0, 0, 0, 0.08) 0px 10px 15px 0px;
+
+  box-sizing: border-box;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top__buttons {
+  display: flex;
+}
+
+.products-list {
+  margin: 16px 0;
+  padding: 0;
+
+  list-style: none;
+
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+
+  border-top: 1px solid rgb(225, 225, 255);
+  padding-top: 16px;
+}

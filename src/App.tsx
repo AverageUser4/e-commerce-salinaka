@@ -8,6 +8,7 @@ import Recommended from "./pages/Recommended";
 import Shop from "./pages/Shop";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
 
           <Route path="/signup">
             <SignUp/>
+          </Route>
+
+          <Route path="/signin">
+            <SignIn/>
           </Route>
 
           <Redirect to="/"/>

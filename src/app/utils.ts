@@ -10,3 +10,7 @@ export function parsePrice(price: number, cutDecimal?: boolean): string {
 export function clamp(min: number, actual: number, max: number): number {
   return Math.min(Math.max(min, actual), max);
 }
+
+export function capitalize(str: string) {
+  return str[0].toUpperCase() + str.slice(1);
+}
