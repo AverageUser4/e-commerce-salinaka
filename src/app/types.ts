@@ -22,3 +22,10 @@ export interface Filters {
   sort: 'nameAsc' | 'nameDesc' | 'priceAsc' | 'priceDesc' | '',
   price: number[],
 }
+
+export interface BasketItemType {
+  id: string,
+  quantity: number,
+  size: string,
+  color: string,
+}

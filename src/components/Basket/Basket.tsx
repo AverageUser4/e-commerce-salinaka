@@ -2,8 +2,12 @@ import css from './Basket.module.css';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
 import BasketItem from '../BasketItem/BasketItem';
+import { useAppSelector } from '../../app/hooks';
+import { selectBasket } from '../../features/basket/basketSlice';
 
 export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsOpen: Function }) {
+  const basket = useAppSelector(selectBasket);
+  
   if(!isOpen) {
     return null;
   }
@@ -23,15 +27,16 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
       </div>
 
       <ul className={css['products-list']}>
-        <li>
-          <BasketItem/>
-        </li>
-        <li>
-          <BasketItem/>
-        </li>
-        <li>
-          <BasketItem/>
-        </li>
+        {
+          basket.length ?
+            basket.map(item =>
+              <li key={item.id}>
+                <BasketItem {...item}/>
+              </li>
+            )
+          :
+            <li><Text variant="p" element="p">Your basket is empty.</Text></li>
+        }
       </ul>
 
       <div className={css['bottom']}>

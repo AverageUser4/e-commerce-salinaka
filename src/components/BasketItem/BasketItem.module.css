@@ -29,9 +29,10 @@
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-template-areas: 
-    "a x x"
+    "a a a"
     "b c d";
   gap: 8px 32px;
+  justify-content: start;
 }
 .item-1 {
   grid-area: a;
@@ -51,4 +52,12 @@
   height: 16px;
 
   border-radius: 50%;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-left: auto;
 }

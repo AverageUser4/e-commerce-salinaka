@@ -4,8 +4,12 @@ import { parsePrice } from "../../app/utils";
 import { Link } from 'react-router-dom';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
+import { useAppDispatch } from '../../app/hooks';
+import { addToBasket } from '../../features/basket/basketSlice';
 
 export default function DetailedProductCard({ product } : { product: Product }) {
+  const dispatch = useAppDispatch();
+  
   return (
     <article className={css['container']}>
       <Link className={css['link']} to={`/product/${product.id}`}>
@@ -23,7 +27,10 @@ export default function DetailedProductCard({ product } : { product: Product }) 
       </Link>
 
       <div className={css['button-container']}>
-        <Button className={css['button']}>
+        <Button 
+          className={css['button']}
+          onClick={() => dispatch(addToBasket({ id: product.id, color: product.colors[0].value, size: '28 mm' }))}
+        >
           Add to basket
         </Button>
       </div>
