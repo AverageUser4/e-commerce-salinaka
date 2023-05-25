@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAppSelector, useProductsData } from '../../app/hooks';
-import css from './DetailedProductsGrid.module.css';
 import { selectFilteredProducts, selectAllProducts } from '../../features/products/productsSlice';
 import { Product } from '../../app/types';
 import DetailedProductCard from '../DetailedProductCard/DetailedProductCard';
@@ -12,6 +11,7 @@ import { ReactComponent as FilterSVG } from '../../assets/filter.svg';
 import { selectFilters } from '../../features/filters/filtersSlice';
 import { RootState } from '../../app/store';
 import AppliedFilters from '../AppliedFilters/AppliedFilters';
+import Grid from '../Grid/Grid';
 
 export default function DetailedProductsGrid() {
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
@@ -47,13 +47,11 @@ export default function DetailedProductsGrid() {
 
       {
         filteredProducts.length ?
-          <ul className={css['container']}>
+          <Grid>
             {filteredProducts.map((product: Product) => (
-              <li key={product.id}>
-                <DetailedProductCard product={product}/>
-              </li>
+              <DetailedProductCard product={product}/>
             ))}
-          </ul>
+          </Grid>
         :
           <Text variant="h3" element="h3" style={{ textAlign: 'center', marginTop: 32 }}>No products found.</Text>
       }

@@ -5,10 +5,10 @@ import { ReactComponent as CloseSVG } from '../../assets/close.svg';
 import { ReactComponent as BasketSVG } from '../../assets/basket.svg';
 import Basket from '../Basket/Basket';
 import { useState } from 'react';
-
+import ProductSearchForm from '../ProductSearchForm/ProductSearchForm';
 
 export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boolean, setIsNavOpen: Function }) {
-  const [isBasketOpen, setIsBasketOpen] = useState(true);
+  const [isBasketOpen, setIsBasketOpen] = useState(false);
   
   return (
     <>
@@ -68,9 +68,7 @@ export default function HeaderNav({ isNavOpen, setIsNavOpen } : { isNavOpen: boo
 
         <div className={css['siblings']}>
           <div className={css['siblings']}>
-            <form role="search">
-              <input type="search" className={`input input--search ${css['item']}`} placeholder="Search product..."/>
-            </form>
+            <ProductSearchForm submitCallback={() => setIsNavOpen(false)}/>
 
             <Button color="b" onClick={() => { setIsBasketOpen(prev => !prev); setIsNavOpen(false); }}>
               <BasketSVG style={{ color: 'rgb(16, 16, 16)', width: 24, height: 24 }}/>

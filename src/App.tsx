@@ -9,6 +9,7 @@ import Shop from "./pages/Shop";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
 
           <Route path="/signin">
             <SignIn/>
+          </Route>
+
+          <Route path="/search/:query">
+            <Search/>
           </Route>
 
           <Redirect to="/"/>
