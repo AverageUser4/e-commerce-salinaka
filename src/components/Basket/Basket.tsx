@@ -2,11 +2,17 @@ import css from './Basket.module.css';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
 import BasketItem from '../BasketItem/BasketItem';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useProductsData } from '../../app/hooks';
 import { selectBasket } from '../../features/basket/basketSlice';
+import { parsePrice } from '../../app/utils';
+import { selectAllProducts } from '../../features/products/productsSlice';
 
 export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsOpen: Function }) {
+  useProductsData();
+  const products = useAppSelector(selectAllProducts);
   const basket = useAppSelector(selectBasket);
+  let subtotal = 0;
+  basket.forEach(item => subtotal += (item.quantity * (products.find(x => x.id === item.id)?.price || 0)))
   
   if(!isOpen) {
     return null;
@@ -42,10 +48,12 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
       <div className={css['bottom']}>
         <div>
           <Text variant="h6" element="h4" color="p-a" style={{ marginBottom: 16 }}>Subtotal Amount:</Text>
-          <Text variant="h4" element="p">$240.00</Text>
+          <Text variant="h4" element="p">
+            {parsePrice(subtotal)}
+          </Text>
         </div>
 
-        <Button style={{ fontSize: 16 }}>CHECK OUT</Button>
+        <Button style={{ fontSize: 16 }}>CHECKOUT</Button>
       </div>
 
     </div>
