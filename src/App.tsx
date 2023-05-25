@@ -10,6 +10,7 @@ import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Search from "./pages/Search";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
 
           <Route path="/search/:query">
             <Search/>
+          </Route>
+
+          <Route path="/checkout">
+            <Checkout/>
           </Route>
 
           <Redirect to="/"/>

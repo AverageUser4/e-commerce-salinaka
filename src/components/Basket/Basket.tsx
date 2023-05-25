@@ -53,9 +53,8 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
           </Text>
         </div>
 
-        <Button style={{ fontSize: 16 }}>CHECKOUT</Button>
+        <Button href="/checkout" style={{ fontSize: 16 }}>CHECKOUT</Button>
       </div>
-
     </div>
   );
 }
