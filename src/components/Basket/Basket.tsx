@@ -2,13 +2,15 @@ import css from './Basket.module.css';
 import Text from '../Text/Text';
 import Button from '../Button/Button';
 import BasketItem from '../BasketItem/BasketItem';
-import { useAppSelector, useProductsData } from '../../app/hooks';
+import { useAppDispatch, useAppSelector, useProductsData } from '../../app/hooks';
 import { selectBasket } from '../../features/basket/basketSlice';
 import { parsePrice } from '../../app/utils';
 import { selectAllProducts } from '../../features/products/productsSlice';
+import { clearBasket } from '../../features/basket/basketSlice';
 
 export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsOpen: Function }) {
   useProductsData();
+  const dispatch = useAppDispatch();
   const products = useAppSelector(selectAllProducts);
   const basket = useAppSelector(selectBasket);
   let subtotal = 0;
@@ -28,7 +30,7 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
 
         <div className={css['top__buttons']}>
           <Button color="d" style={{ borderRight: 'none' }} onClick={() => setIsOpen(false)}>Close</Button>
-          <Button color="d">Clear Basket</Button>
+          <Button color="d" onClick={() => dispatch(clearBasket())}>Clear Basket</Button>
         </div>
       </div>
 

@@ -45,7 +45,7 @@ const basketSlice = createSlice({
         return state;
       }
     },
-    clearBasket(state, action) {
+    clearBasket() {
       return initialState;
     }
   },
