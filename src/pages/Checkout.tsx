@@ -22,7 +22,7 @@ export default function Checkout() {
         basket.length ?
           <>
             <Text variant="h3" element="h1" style={{ marginBottom: 12 }}>Are you sure you want to buy what's in your basket?</Text>
-            <Button onClick={() => dispatch(clearBasket(null))}>YES</Button>
+            <Button onClick={() => dispatch(clearBasket())}>YES</Button>
           </>
         :
           <Text variant="h3" element="h1" style={{ marginBottom: 12 }}>Your basket is empty!</Text>

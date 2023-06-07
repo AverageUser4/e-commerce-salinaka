@@ -25,7 +25,12 @@ export default function Basket({ isOpen, setIsOpen } : { isOpen: boolean, setIsO
       <div className={css['top']}>
         <div className={css['heading']}>
           <Text variant="h4" element="h4">My Basket</Text>
-          <Text variant="h6" element="p" color="p-a">(1 item)</Text>
+          {
+            basket.length > 0 &&
+              <Text variant="h6" element="p" color="p-a">
+                ({basket.length} item{basket.length > 1 && 's'})
+              </Text>
+          }
         </div>
 
         <div className={css['top__buttons']}>
