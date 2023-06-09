@@ -49,7 +49,7 @@ export default function DetailedProductsGrid() {
         filteredProducts.length ?
           <Grid>
             {filteredProducts.map((product: Product) => (
-              <DetailedProductCard product={product}/>
+              <DetailedProductCard key={product.id} product={product}/>
             ))}
           </Grid>
         :
